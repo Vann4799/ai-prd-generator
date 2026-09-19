@@ -38,13 +38,15 @@ Buat PRD buat D:\ALL PROJECT\Venesx
 
 The agent then:
 
-1. Reads the repo if one exists and shows you a pre-filled draft.
-2. Asks the gaps in 4 rounds of at most 4 questions — plus a 5th round only
+1. Registers the six phases as tracked tasks, so progress is visible and no
+   step gets dropped halfway through.
+2. Reads the repo if one exists and shows you a pre-filled draft.
+3. Asks the gaps in 4 rounds of at most 4 questions — plus a 5th round only
    when the project touches payments, personal data, integrations, or
    post-launch maintenance.
-3. Writes `docs/PRD-<slug>.md` from the template.
-4. Runs the validator and fixes every `FAIL` before calling it done.
-5. Gives a 3-5 sentence non-technical summary, then exports on request.
+4. Writes `docs/PRD-<slug>.md` from the template.
+5. Runs the validator and fixes every `FAIL` before calling it done.
+6. Gives a 3-5 sentence non-technical summary, then exports on request.
 
 ## Layout
 

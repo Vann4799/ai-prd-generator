@@ -9,7 +9,7 @@ description: >-
   "tajamin requirements-nya". Reads an existing repo first and pre-fills
   answers when the project already has code. Exports Markdown PRD, JSON task
   list, Mermaid roadmap, and .cursorrules.
-version: 0.3.1
+version: 0.3.2
 author: Vann4799
 license: MIT
 platforms: [linux, macos, windows]
@@ -52,6 +52,26 @@ Ask questions with the host agent's structured prompt tool:
 `AskUserQuestion` caps at 4 questions per call — that is why the interview runs
 in rounds instead of 16 sequential popups. Always leave free-text available
 (via the "Other" option) for open-ended answers like the description.
+
+## Progress Tracking
+
+Before anything else, register the six procedure phases in the host's task
+tracker so a long interview can't silently drop a step:
+
+| Host | Tracker |
+|------|---------|
+| Qoder CLI | `TaskCreate` / `TaskUpdate` |
+| Claude Code | `TodoWrite` |
+| Codex / OpenCode / terminal | keep a `- [ ]` checklist, updating it in chat each phase |
+
+- Mark a phase `in_progress` when entering it, `completed` only once its exit
+  condition holds: 0 context known · 1 every answer evidenced or confirmed ·
+  2 file written · 3 validator `PASS` · 4 summary shown · 5 exports on disk or
+  the user declined them.
+- Phase 3 never completes while the validator prints a `FAIL`.
+- Do **not** add the PRD's own feature list to the tracker — that's what the
+  exports are for. Seed build tasks from `<basename>.tasks.json` (P0 first) only
+  after the user asks to start building.
 
 ## Procedure
 
