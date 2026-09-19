@@ -1,97 +1,97 @@
-# 🚀 AI PRD Generator
+# PRD Generator Skill
 
-Generate comprehensive **Product Requirements Documents** through warm, conversational AI interviews.
+Generate a comprehensive Product Requirements Document (PRD) through a warm,
+conversational interview. Works with Qoder CLI, Claude Code, Codex, OpenCode,
+and Hermes Agent.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)]()
+The skill interviews in short rounds instead of making you write a spec, mines
+an existing repo to pre-fill answers it can prove, then exports the PRD to
+Markdown, a JSON task list, a Mermaid roadmap, and a hand-off prompt for coding
+agents.
 
-> Inspired by advanced prompting techniques from Claude Fable 5, Cursor, Lovable, and Devin.
+## Install
 
-## ✨ Features
+The skill lives in `skills/prd-generator/`. Point your agent at that folder:
 
-- 🗣️ **Conversational Interview** — AI asks questions one by one, like talking to a friend
-- 🇮🇩 **Indonesian & English** — Natural bilingual support
-- 🎯 **Fable 5 Style** — Warm, friendly, no AI-isms
-- 📝 **Non-Technical Summary** — Simple explanation at the end
-- 🔧 **Multi-Tool** — Works with Claude Code, Codex, OpenCode, Hermes Agent
-
-## 📦 Installation
-
-### Claude Code
 ```bash
-git clone https://github.com/Vann4799/ai-prd-generator.git ~/.claude/ai-prd-generator
+git clone https://github.com/Vann4799/ai-prd-generator.git /tmp/aiprd
+
+# Qoder CLI / Claude Code
+cp -r /tmp/aiprd/skills/prd-generator ~/.agents/skills/   # or ~/.claude/skills/
+
+# Codex / OpenCode
+cp -r /tmp/aiprd/skills/prd-generator ~/.codex/skills/
+
+# Hermes Agent
+hermes skills add /tmp/aiprd/skills/prd-generator
 ```
 
-### Codex
+Restart the session (or reload skills) so the new skill is discovered.
+
+## Use
+
+```
+Buat PRD untuk aplikasi kasir toko kelontong
+Generate a PRD for my expense tracking app
+Buat PRD buat D:\ALL PROJECT\Venesx
+```
+
+The agent then:
+
+1. Reads the repo if one exists and shows you a pre-filled draft.
+2. Asks the gaps in 4 rounds of at most 4 questions.
+3. Writes `docs/PRD-<slug>.md` from the template.
+4. Runs the validator and fixes every `FAIL` before calling it done.
+5. Gives a 3-5 sentence non-technical summary, then exports on request.
+
+## Layout
+
+```
+skills/prd-generator/
+├── SKILL.md                       workflow, tone, ask-user tool mapping
+├── references/
+│   ├── interview.md               16 questions in 4 rounds + pre-fill table
+│   ├── generate.md                per-section writing rules
+│   ├── revise.md                  change → affected sections
+│   └── export.md                  export formats and script usage
+├── assets/
+│   └── prd-structure.md           fill-in PRD template
+└── scripts/
+    ├── lib.mjs                    shared PRD parser + completeness checks
+    ├── validate_prd.mjs           deterministic PRD validation
+    └── export_prd.mjs             PRD → tasks.json / roadmap.md / .cursorrules
+```
+
+`references/` is loaded only for the phase that needs it, so the whole interview
+script does not sit in the context window the entire session.
+
+## Scripts
+
+Both are dependency-free Node (≥18) and can be run directly on any PRD file.
+
 ```bash
-git clone https://github.com/Vann4799/ai-prd-generator.git ~/.codex/ai-prd-generator
+node scripts/validate_prd.mjs docs/PRD-kasirtoko.md
+node scripts/export_prd.mjs docs/PRD-kasirtoko.md --format all --out docs/
 ```
 
-### OpenCode
-```bash
-git clone https://github.com/Vann4799/ai-prd-generator.git ~/.opencode/skills/ai-prd-generator
-```
+The validator checks all 11 required sections, leftover `[placeholders]` and
+`TODO:` strings, a non-empty P0 list, a user story plus acceptance criteria for
+every P0 feature, a "so that" clause per story, and summary length. It exits
+non-zero on any failure, so it drops cleanly into CI or a pre-commit hook.
 
-### Hermes Agent
-```bash
-hermes skills install Vann4799/ai-prd-generator
-```
+The exporter refuses to run on a PRD that fails validation — exports are always
+derived from the document, never maintained by hand beside it.
 
-## 🎯 Usage
+## Customising
 
-Simply say:
+Edit the files rather than the workflow:
 
-```
-"Buat PRD untuk aplikasi kasir toko"
-```
+- `references/interview.md` — add, drop, or reorder questions; keep the round
+  size at 4 or fewer
+- `references/generate.md` + `assets/prd-structure.md` — sections and their
+  rules; add a heading to `REQUIRED` in `scripts/lib.mjs` if you want it enforced
+- `references/export.md` + `scripts/export_prd.mjs` — new export targets
 
-or:
+## License
 
-```
-"Generate a PRD for my expense tracking app"
-```
-
-The AI will:
-1. Ask questions one by one (warm, conversational)
-2. Generate a comprehensive PRD
-3. Provide a non-technical summary
-
-## 📋 Interview Questions
-
-| # | Question (ID) | Question (EN) |
-|---|--------------|---------------|
-| 1 | Apa nama aplikasinya? | What's the project name? |
-| 2 | Jenis aplikasinya apa? | What type of project? |
-| 3 | Ceritain dong, aplikasi ini ngapain? | Describe what it does |
-| 4 | Siapa yang bakal pakai? | Who are the target users? |
-| 5 | Masalah apa yang mau diselesaikan? | What problem does it solve? |
-| 6 | Fitur utama apa aja? | What are the core features? |
-| 7 | Ada teknologi khusus? | Any preferred tech stack? |
-| 8 | Target selesai kapan? | What's the timeline? |
-| 9 | Gimana tau berhasil? | How will you measure success? |
-| 10 | Mau Bahasa Indonesia atau English? | Language preference? |
-
-## 📄 PRD Output
-
-1. Project Overview
-2. Problem Statement
-3. Target Users (with personas)
-4. Features (Must-have, Should-have, Nice-to-have)
-5. User Stories & Acceptance Criteria
-6. Technical Requirements
-7. Success Metrics
-8. Timeline & Milestones
-9. Risks & Mitigation
-10. **Non-Technical Summary** ← Bonus!
-
-## 🤝 Contributing
-
-PRs welcome!
-
-## 📄 License
-
-MIT License
-
----
-
-Made with ❤️ by [Vann4799](https://github.com/Vann4799)
+MIT
