@@ -94,10 +94,25 @@ Ask only the remaining gaps, in one round.
     *Contoh: "Laporan kelar 5 menit, nggak ada lagi catetan ilang"*
 16. **Output language** — "PRD-nya Bahasa Indonesia atau English?"
 
+### Round 5 — Kondisional (skip total kalau nggak ada pemicunya)
+
+Don't run this round by default. Ask only the questions whose trigger matches
+what the user said or the repo shows, and say nothing about the ones you skip.
+
+| # | Ask when triggered by | Feeds |
+|---|----------------------|-------|
+| 17. **Business model** — "Ini bikin duit gimana? Gratis, langganan, komisi per transaksi?" | the app charges, bills, or takes a cut | *Business Model* section, and payment scope in Q10 |
+| 18. **Data & compliance** — "Data siapa yang disimpen? Ada NIK/foto/alamat? Boleh ke cloud luar negeri?" | personal data, documents, or health/financial records | *Compliance* section + a Risks row |
+| 19. **Integrations** — "Harus nyambung ke apa? Payment gateway, WhatsApp API, marketplace, mesin EDC?" | any third-party system named or implied | *Technical Requirements* dependencies, and a likely P0 feature |
+| 20. **Maintenance** — "Habis launch siapa yang benerin kalau mati? Ada budget bulanan?" | the user isn't the operator, or other people will depend on it | *Maintenance* section + a definition-of-done line in Timeline |
+
+If a trigger fires but the answer comes back "belum tau", record it under *Open
+Questions* rather than pushing — an unknown is allowed, a missing section isn't.
+
 ## Completion Criteria
 
-- All 16 answered, each either from the user or backed by repo evidence the
-  user confirmed.
+- Questions 1-16 answered, each either from the user or backed by repo evidence
+  the user confirmed; Round 5 only where its trigger fired.
 - Features split into P0 / P1 / out-of-scope.
 - Output language chosen.
 - User says they're ready to generate — then load `generate.md`.

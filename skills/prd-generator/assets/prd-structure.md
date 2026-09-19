@@ -76,8 +76,14 @@ validator flags leftover `[...]` placeholders.
 
 ## Optional sections
 
-Add only when they carry real content: **Open Questions** (unanswered items
-from the interview), **Data Model**, **Accessibility**, **Compliance**.
+Add only when the matching interview trigger fired — never to look thorough:
+
+- **Business Model** — the app charges or takes a cut
+- **Compliance** — personal data, documents, or health/financial records
+- **Integrations** — a third-party system is in scope (name it, direction, failure mode)
+- **Maintenance** — someone other than the builder operates it after launch
+- **Open Questions** — anything the user could not answer
+- **Data Model**, **Accessibility** — only when they carry real content
 
 ## Usage
 

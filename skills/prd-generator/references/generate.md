@@ -34,6 +34,12 @@ answer.
 Derive user stories from the P0 list only — a story for a feature that isn't
 P0 means the feature list is wrong, not the story list.
 
+Optional sections exist but appear only when Round 5 of the interview fired:
+**Business Model** (pricing + payment flow), **Compliance** (data held, legal
+constraints), **Integrations** (each system, direction, and failure mode),
+**Maintenance** (who operates it post-launch, at what cost). Never add one to
+look thorough — an empty section is a FAIL the validator can't see.
+
 For codebase-aware PRDs, section 7 must reflect what the repo actually uses
 (real deps and versions), and section 9 should be phased against what already
 exists versus what is net-new.

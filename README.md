@@ -39,7 +39,9 @@ Buat PRD buat D:\ALL PROJECT\Venesx
 The agent then:
 
 1. Reads the repo if one exists and shows you a pre-filled draft.
-2. Asks the gaps in 4 rounds of at most 4 questions.
+2. Asks the gaps in 4 rounds of at most 4 questions — plus a 5th round only
+   when the project touches payments, personal data, integrations, or
+   post-launch maintenance.
 3. Writes `docs/PRD-<slug>.md` from the template.
 4. Runs the validator and fixes every `FAIL` before calling it done.
 5. Gives a 3-5 sentence non-technical summary, then exports on request.
@@ -50,7 +52,7 @@ The agent then:
 skills/prd-generator/
 ├── SKILL.md                       workflow, tone, ask-user tool mapping
 ├── references/
-│   ├── interview.md               16 questions in 4 rounds + pre-fill table
+│   ├── interview.md               16 questions in 4 rounds, +1 conditional, pre-fill table
 │   ├── generate.md                per-section writing rules
 │   ├── revise.md                  change → affected sections
 │   └── export.md                  export formats and script usage

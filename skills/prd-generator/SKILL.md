@@ -9,7 +9,7 @@ description: >-
   "tajamin requirements-nya". Reads an existing repo first and pre-fills
   answers when the project already has code. Exports Markdown PRD, JSON task
   list, Mermaid roadmap, and .cursorrules.
-version: 0.3.0
+version: 0.3.1
 author: Vann4799
 license: MIT
 platforms: [linux, macos, windows]
@@ -76,8 +76,9 @@ user that draft, and only ask about the gaps. Loading
 
 Load `references/interview.md`. 16 questions in 4 rounds (basics →
 problem/context → features/scope → tech/timeline/metrics/language), pre-filled
-answers skipped, gaps asked. Never silently skip a question that has no
-evidence behind it.
+answers skipped, gaps asked. A 5th round (business model, compliance,
+integrations, maintenance) runs only when the project touches those — never by
+default. Never silently skip a question that has no evidence behind it.
 
 ### 2. Generate
 
@@ -125,7 +126,7 @@ then re-run steps 3 and 5 so exports never drift from the PRD.
 
 ## Resources
 
-- `references/interview.md` — 16-question flow, round grouping, pre-fill rules
+- `references/interview.md` — 16-question flow in 4 rounds, conditional round 5, pre-fill rules
 - `references/generate.md` — section-by-section PRD writing rules
 - `references/revise.md` — targeted edits and cross-section consistency
 - `references/export.md` — export formats and script usage
