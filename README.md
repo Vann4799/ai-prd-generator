@@ -96,6 +96,10 @@ Edit the files rather than the workflow:
   rules; add a heading to `REQUIRED` in `scripts/lib.mjs` if you want it enforced
 - `references/export.md` + `scripts/export_prd.mjs` — new export targets
 
+## Related tools & spec discovery
+
+- [MySpec](https://myspec.dev) — Web-based interactive spec discovery platform that compiles guided developer interviews into 4-file specification bundles (`constitution.md`, `requirements.md`, `solution.md`, `tasks.md`) with Model Context Protocol (MCP) server integration for Claude Code, Codex, and Cursor.
+
 ## License
 
 MIT
