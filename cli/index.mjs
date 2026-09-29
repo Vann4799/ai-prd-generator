@@ -108,7 +108,7 @@ for (const { label, command } of t.commands)
 
 console.log(
   installed
-    ? `\n${installed} host(s) updated. Restart the session or reload skills, then ask for a DESIGN.md.`
+    ? `\n${installed} host(s) updated. Restart the session or reload skills, then ask for a PRD.`
     : '\nNothing installed.',
 )
 process.exit(installed || t.copies.length === 0 ? 0 : 1)
