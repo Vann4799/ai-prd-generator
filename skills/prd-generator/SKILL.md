@@ -9,7 +9,7 @@ description: >-
   "tajamin requirements-nya". Reads an existing repo first and pre-fills
   answers when the project already has code. Exports Markdown PRD, JSON task
   list, Mermaid roadmap, and .cursorrules.
-version: 0.3.2
+version: 0.4.0
 author: Vann4799
 license: MIT
 platforms: [linux, macos, windows]
@@ -151,5 +151,6 @@ then re-run steps 3 and 5 so exports never drift from the PRD.
 - `references/revise.md` — targeted edits and cross-section consistency
 - `references/export.md` — export formats and script usage
 - `assets/prd-structure.md` — the fill-in template
+- `scripts/lib.mjs` — shared PRD parser and completeness checks
 - `scripts/validate_prd.mjs` — deterministic completeness check
 - `scripts/export_prd.mjs` — PRD → tasks.json / roadmap.md / .cursorrules

@@ -1,0 +1,14 @@
+{
+  "name": "prd-generator",
+  "description": "Generate or revise a Product Requirements Document through a short interview instead of making the user write one — validated deterministically, exported to tasks.json, a Mermaid roadmap and a coding-agent hand-off.",
+  "version": "0.4.0",
+  "author": {
+    "name": "Vann4799",
+    "email": "129656771+Vann4799@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Vann4799/ai-prd-generator",
+  "repository": "https://github.com/Vann4799/ai-prd-generator",
+  "keywords": ["prd", "planning", "product-management", "requirements"],
+  "skills": ["./skills/"]
+}

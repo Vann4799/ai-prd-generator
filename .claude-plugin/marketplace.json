@@ -1,0 +1,23 @@
+{
+  "name": "vann4799-prd",
+  "owner": {
+    "name": "Vann4799",
+    "email": "129656771+Vann4799@users.noreply.github.com"
+  },
+  "metadata": {
+    "description": "Requirements skills for coding agents: interview first, then a validated PRD with machine-readable exports.",
+    "version": "0.4.0"
+  },
+  "plugins": [
+    {
+      "name": "prd-generator",
+      "description": "Generate or revise a PRD through a short bilingual interview, with deterministic validation and exports.",
+      "author": {
+        "name": "Vann4799",
+        "email": "129656771+Vann4799@users.noreply.github.com"
+      },
+      "category": "productivity",
+      "source": "./"
+    }
+  ]
+}
